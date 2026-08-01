@@ -89,3 +89,25 @@ categorical_features = [
     "ProductPitched"
 
 ]
+
+
+# ==========================
+# Data Splitting
+# ==========================
+
+# Define predictor matrix (X) and target variable (y)
+X = df[numeric_features + categorical_features]
+y = df[target]
+
+# Split the dataset into training and test sets
+Xtrain, Xtest, ytrain, ytest = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Save the splits to CSV files
+Xtrain.to_csv("Xtrain.csv", index=False)
+Xtest.to_csv("Xtest.csv", index=False)
+ytrain.to_csv("ytrain.csv", index=False)
+ytest.to_csv("ytest.csv", index=False)
+
+print("Data split into training and test sets and saved successfully.")
